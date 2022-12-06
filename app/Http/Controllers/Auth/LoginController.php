@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
+
     public function index()
     {
         return view('auth.login');
@@ -20,7 +21,7 @@ class LoginController extends Controller
 
         ]);
 
-        if (!auth()->attempt($request->only('email', 'password'))) {
+        if (!auth()->attempt($request->only('email', 'password'), $request->remeber)) {
             return back()->with('status', 'Invalid login details');
         }
 
